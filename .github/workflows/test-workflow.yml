@@ -25,7 +25,7 @@ jobs:
         uses: grafana/setup-k6-action@v1
 
       - name: Run k6 tests
-        run: dotenv -e .env k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
+        run: k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
           BASE_URL: ${{ secrets.BASE_URL }}
