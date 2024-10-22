@@ -24,6 +24,9 @@ jobs:
       - name: Set up k6
         uses: grafana/setup-k6-action@v1
 
+      - name: Display environment variables for debugging
+        run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" && echo "BASE_URL=${{ secrets.BASE_URL }}"
+
       - name: Run k6 tests
         run: k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
         env:
