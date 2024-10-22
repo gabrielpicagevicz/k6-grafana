@@ -1,0 +1,29 @@
+name: Run k6 automacao api-easy-connect
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código do repositório
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      # Configurar a versão do Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Instalar dependências
+      - name: Install dependencies
+        run: npm install
+
+      # Executar o script definido no package.json com as variáveis de ambiente
+      - name: Run k6 tests
+        run: API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} npm run exec
