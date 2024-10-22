@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install k6
-        run: sudo apt-get update && sudo apt-get install -y k6
+      - name: Set up k6
+        uses: grafana/setup-k6-action@v1
 
       - name: Run k6 tests
-        run: npm run exec
+        run: dotenv -e .env k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
           BASE_URL: ${{ secrets.BASE_URL }}
