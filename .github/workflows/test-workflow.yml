@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '23' 
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
@@ -27,18 +27,13 @@ jobs:
       - name: Display environment variables for debugging
         run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" && echo "BASE_URL=${{ secrets.BASE_URL }}"
 
-      - name: 'Create env file'
+      - name: Create .env file
         run: |
-          touch .env
-          echo BASE_URL=${{ secrets.BASE_URL }} >> .env
-          echo API_TOKEN=${{ secrets.API_TOKEN }} >> .env
-          cat .env
+          echo "API_TOKEN=${{ secrets.API_TOKEN }}" >> .env
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
 
       - name: Run k6 tests
         uses: grafana/run-k6-action@v1
         with:
           path: |
             ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          API_TOKEN: ${{ secrets.API_TOKEN }}
