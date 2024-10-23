@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "exec": "npx dotenv-cli -e .env k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js"
-  },
+  "exec": "dotenv -e .env -- k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js"
+}
+,
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "dotenv-cli": "6.0.0"
-  }
+  "dependencies": {}
 }
