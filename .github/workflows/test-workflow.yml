@@ -19,7 +19,7 @@ jobs:
       - name: Load Environment Variables
         uses: crazy-max/ghaction-dotenv@v2
         with:
-          env-file: .env
+          env-file: config/.env 
 
       - name: Install k6
         run: |
@@ -27,4 +27,7 @@ jobs:
           sudo apt install -y k6
 
       - name: Run k6 tests
-        run: k6 run --env API_TOKEN=${{ secrets.API_TOKEN }} --env BASE_URL=${{ secrets.BASE_URL }} ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
+        run: k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          BASE_URL: ${{ secrets.BASE_URL }}
