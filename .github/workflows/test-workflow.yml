@@ -3,31 +3,32 @@ name: Automação de Testes - api-easy-connect
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - master
 
 jobs:
-  run-tests:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          go-version: '1.18'  # ou a versão que você está usando
+          node-version: '14'
 
-      - name: Install xk6
-        run: |
-          go install github.com/k6io/xk6/cmd/xk6@latest
-          xk6 build --with github.com/szkiba/xk6-dotenv
+      - name: Install dependencies
+        run: npm install
 
-      - name: Run k6 Tests
+      - name: Set up k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Display environment variables for debugging
+        run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" && echo "BASE_URL=${{ secrets.BASE_URL }}"
+
+      - name: Run k6 tests
+        run: k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
           BASE_URL: ${{ secrets.BASE_URL }}
-        run: |
-          ./k6-automacao-api-easy-connect --env-file .env run scripts/easy-connect/colaborador/colaborador-post.js
