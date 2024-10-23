@@ -27,11 +27,14 @@ jobs:
       - name: Display environment variables for debugging
         run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" && echo "BASE_URL=${{ secrets.BASE_URL }}"
 
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_API_TOKEN: ${{ secrets.API_TOKEN }}
+          envkey_BASE_URL: ${{ secrets.BASE_URL }}
+
       - name: Run k6 tests
         uses: grafana/run-k6-action@v1
-        env:
-          API_TOKEN: ${{ secrets.API_TOKEN }}
-          BASE_URL: ${{ secrets.BASE_URL }}
         with:
           path: |
             ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
