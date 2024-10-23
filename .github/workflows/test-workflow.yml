@@ -28,7 +28,7 @@ jobs:
         run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" && echo "BASE_URL=${{ secrets.BASE_URL }}"
 
       - name: Run k6 tests
-        run: k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
+        run: npm run exec
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
           BASE_URL: ${{ secrets.BASE_URL }}
