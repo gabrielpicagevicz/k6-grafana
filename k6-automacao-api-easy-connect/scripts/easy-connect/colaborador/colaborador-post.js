@@ -36,12 +36,8 @@ export let options = {
 var returnAPI;
 export function criarColaborador() {
   describe("Payload completo com todos os campos obrigatórios preenchidos corretamente.", (t) => {
-
-    //const endpoint = `${__ENV.BASE_URL}/colaborador/create`;
-
-    http.post(`http://${__ENV.BASE_URL}/colaborador/create`);
-
-    //const res = makeRequest("POST", endpoint, colaborador,  `${__ENV.BASE_URL}`);
+    const endpoint = `${baseUrl}/colaborador/create`;
+    const res = makeRequest("POST", endpoint, colaborador, token);
 
     console.log(res.body);
 
