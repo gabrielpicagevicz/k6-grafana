@@ -59,7 +59,7 @@ export function criarColaboradorComOpcoesNulas() {
   describe("Campos Opcionais Preenchidos com Nulo", () => {
     const endpoint = `${baseUrl}/colaborador/create`;
     const res = makeRequest("POST", endpoint, opcoesNulas, token);
-    checkStatus(201, res.status);
+    checkStatus(200, res.status);
   });
 }
 
