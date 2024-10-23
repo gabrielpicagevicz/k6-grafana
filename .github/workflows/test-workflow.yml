@@ -39,3 +39,6 @@ jobs:
         with:
           path: |
             ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
