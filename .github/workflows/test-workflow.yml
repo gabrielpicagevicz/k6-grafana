@@ -1,4 +1,4 @@
-name: Automação de Testes - api-easy-connect
+name: Automação de Testes - api-easy-integracao
 
 on:
   push:
@@ -29,4 +29,4 @@ jobs:
 
       - name: Run k6 tests
         run: |
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js

@@ -1,9 +1,9 @@
 {
-  "name": "k6-automacao-api-easy-connect",
+  "name": "k6-automacao-api-easy-integracao",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "exec": "dotenv -e .env k6 run ./k6-automacao-api-easy-connect/scripts/easy-connect/colaborador/colaborador-post.js"
+    "exec": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js"
   },
   "author": "",
   "license": "ISC",
