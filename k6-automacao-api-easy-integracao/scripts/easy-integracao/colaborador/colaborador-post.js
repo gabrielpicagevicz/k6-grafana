@@ -9,16 +9,20 @@ import {
   criarColaboradorOmitindoNome as nomefaltando,
   criarColaboradorOmitindoCPF as cpffaltando,
   criarColaboradorOmitindoCodigoMunicipio as codigoMunicipioFaltando,
-  criarColaboradorOmitindoCodigoJornada as codigoJornada,
+  criarColaboradorOmitindoCodigoJornada as codigoJornadafaltando,
+  criarColaboradorOmitindoCodigoDaFuncao as codigofuncaofaltando,
+  criarColaboradorOmitindoCodigoDepartamento as codigoDepartamentofaltando,
+  criarColaboradorOmitindoDataAdmissao as dataAdmissaofaltando,
 } from "./postColaborador.js";
 import {
   makeRequest,
   checkStatus,
   checkErrorInList,
   checkErrorMessage,
+  makeRequestSemHeader,
 } from "../utils.js/utils.js";
 import { describe } from "https://jslib.k6.io/expect/0.0.5/index.js";
-import { schema } from "../colaborador/colaborador-schema.js";
+import { schemaColaboradorPost } from "../colaborador/colaborador-schema.js";
 
 const token = `${__ENV.API_TOKEN}`;
 const baseUrl = `${__ENV.BASE_URL}`;
@@ -39,19 +43,49 @@ export function criarColaborador() {
     const endpoint = `${baseUrl}/colaborador/create`;
     const res = makeRequest("POST", endpoint, colaborador, token);
 
-    console.log(res.body);
-
     returnAPI = res;
     checkStatus(201, res.status);
   });
 }
 
+export function verificaTokenInvalido() {
+  describe("Enviando request tokens inválido", (t) => {
+    const endpoint = `${baseUrl}/colaborador/create`;
+    const res = makeRequest("POST", endpoint, colaborador, "token_inexistente");
+
+    const resBodyJson = JSON.parse(res.body);
+    checkStatus(403, res.status);
+    checkErrorMessage("Token inválido", resBodyJson.mensagem);
+  });
+}
+
+export function verificaTokenSemHeader() {
+  describe("Enviando request sem header", (t) => {
+    const endpoint = `${baseUrl}/colaborador/create`;
+    const res = makeRequestSemHeader("POST", endpoint, colaborador, token);
+
+    // Parseia o corpo da resposta
+    const resBodyJson = JSON.parse(res.body);
+    checkStatus(401, res.status);
+    checkErrorMessage("Token inválido", resBodyJson.mensagem);
+  });
+}
+
+export function verificaReqEndPointInexistente() {
+  describe("Enviando request em um endpoint que não existe", (t) => {
+    const endpoint = `${baseUrl}/colaborador/createsssssssssssssssssssssss`;
+    const res = makeRequest("POST", endpoint, colaborador, token);
+
+    checkStatus(404, res.status);
+  });
+}
+
 function validateSchemaColaborador() {
-  describe("Create a new funcionario", (t) => {
+  describe("Validação do esquema retornado da API com o modelo pre-definido em colaborador-schema.js", (t) => {
     t.expect(returnAPI)
       .toHaveValidJson()
       .and(returnAPI.json())
-      .toMatchAPISchema(schema);
+      .toMatchAPISchema(schemaColaboradorPost);
   });
 }
 
@@ -80,7 +114,7 @@ export function criarColaboradorComCPFInvalido() {
 }
 
 export function criarColaboradorOmitindoCPFResponsavel() {
-  describe("Criação de colaborador com campo CPF Responsável faltando", () => {
+  describe("Criação de colaborador com campo responsavel_cpf faltando", () => {
     const endpoint = `${baseUrl}/colaborador/create`;
     const res = makeRequest(
       "POST",
@@ -101,7 +135,7 @@ export function criarColaboradorOmitindoCPFResponsavel() {
 }
 
 export function criarColaboradorOmitindoCNPJCPF() {
-  describe("Criação de colaborador com campo CNPJCPF faltando", () => {
+  describe("Criação de colaborador com campo cpfcnpj faltando", () => {
     const endpoint = `${baseUrl}/colaborador/create`;
     const res = makeRequest("POST", endpoint, cnpjcpffaltando, token);
 
@@ -149,7 +183,7 @@ export function criarColaboradorOmitindoCPF() {
 }
 
 export function criarColaboradorOmitindoCodigoMunicipio() {
-  describe("Criação de colaborador com campo CodigoMunicipio faltando", () => {
+  describe("Criação de colaborador com campo codigo_municipio faltando", () => {
     const endpoint = `${baseUrl}/colaborador/create`;
     const res = makeRequest("POST", endpoint, codigoMunicipioFaltando, token);
 
@@ -164,9 +198,9 @@ export function criarColaboradorOmitindoCodigoMunicipio() {
 }
 
 export function criarColaboradorOmitindoCodigoJornada() {
-  describe("Criação de colaborador com campo CodigoJornada faltando", () => {
+  describe("Criação de colaborador com campo codigo_jornada faltando", () => {
     const endpoint = `${baseUrl}/colaborador/create`;
-    const res = makeRequest("POST", endpoint, codigoJornada, token);
+    const res = makeRequest("POST", endpoint, codigoJornadafaltando, token);
 
     checkStatus(400, res.status);
 
@@ -178,9 +212,64 @@ export function criarColaboradorOmitindoCodigoJornada() {
   });
 }
 
+export function criarColaboradorOmitindoCodigoDaFuncao() {
+  describe("Criação de colaborador com campo codigo_funcao faltando", () => {
+    const endpoint = `${baseUrl}/colaborador/create`;
+    const res = makeRequest("POST", endpoint, codigofuncaofaltando, token);
+
+    checkStatus(400, res.status);
+
+    const resBodyJson = JSON.parse(res.body);
+
+    checkStatus("400", resBodyJson.status_code);
+    checkErrorMessage("Dados inválidos", resBodyJson.mensagem);
+    checkErrorInList("O código da função é obrigatório", resBodyJson.errors);
+  });
+}
+
+export function criarColaboradorOmitindoCodigoDepartamento() {
+  describe("Criação de colaborador com campo codigo_departamento faltando", () => {
+    const endpoint = `${baseUrl}/colaborador/create`;
+    const res = makeRequest(
+      "POST",
+      endpoint,
+      codigoDepartamentofaltando,
+      token
+    );
+
+    checkStatus(400, res.status);
+
+    const resBodyJson = JSON.parse(res.body);
+
+    checkStatus("400", resBodyJson.status_code);
+    checkErrorMessage("Dados inválidos", resBodyJson.mensagem);
+    checkErrorInList(
+      "O código do departamento é obrigatório",
+      resBodyJson.errors
+    );
+  });
+}
+
+export function criarColaboradorOmitindoDataAdmissao() {
+  describe("Criação de colaborador com campo data_admissao faltando", () => {
+    const endpoint = `${baseUrl}/colaborador/create`;
+    const res = makeRequest("POST", endpoint, dataAdmissaofaltando, token);
+
+    checkStatus(400, res.status);
+
+    const resBodyJson = JSON.parse(res.body);
+
+    checkStatus("400", resBodyJson.status_code);
+    checkErrorMessage("Dados inválidos", resBodyJson.mensagem);
+    checkErrorInList("A data de admissão é obrigatória", resBodyJson.errors);
+  });
+}
+
 export default function testSuite() {
   criarColaborador();
   validateSchemaColaborador();
+  verificaTokenInvalido();
+  verificaReqEndPointInexistente();
   criarColaboradorComOpcoesNulas();
   criarColaboradorComCPFInvalido();
   criarColaboradorOmitindoCPFResponsavel();
@@ -188,4 +277,7 @@ export default function testSuite() {
   criarColaboradorOmitindoNome();
   criarColaboradorOmitindoCPF();
   criarColaboradorOmitindoCodigoMunicipio();
+  criarColaboradorOmitindoCodigoDaFuncao();
+  criarColaboradorOmitindoCodigoDepartamento();
+  criarColaboradorOmitindoDataAdmissao();
 }

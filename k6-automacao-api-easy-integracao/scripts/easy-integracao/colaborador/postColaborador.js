@@ -5900,12 +5900,34 @@ const codMunicipioIBGE = [
   "1722107",
 ];
 
+function gerarDadosUnicos() {
+  const nomeAleatorio =
+    nomesAleatorios[Math.floor(Math.random() * nomesAleatorios.length)];
+  const dataAtual = new Date();
+  const dataFormatada =
+    dataAtual.toISOString().split("T")[0] +
+    "_" +
+    dataAtual.toLocaleTimeString().replace(/:/g, "-");
+  const caractereEspecial =
+    caracteresEspeciais[Math.floor(Math.random() * caracteresEspeciais.length)];
+
+  const dados = {
+    nome: `${nomeAleatorio} ${dataAtual.toLocaleTimeString()}`,
+    usuario: `${nomeAleatorio}_${dataFormatada}${caractereEspecial}`,
+    email: `${nomeAleatorio}_${dataFormatada}@teste.com.br`,
+  };
+
+  return dados;
+}
+
+const dadosUnicos = gerarDadosUnicos();
+
 const colaborador = {
   responsavel_cpf: "99999999999",
   cpfcnpj: "65978437000140",
-  nome: gerarNomeAleatorio(),
-  usuario: gerarUsuarioUnico(),
-  email: gerarEmailUnico(),
+  nome: dadosUnicos.nome,
+  usuario: dadosUnicos.usuario,
+  email: dadosUnicos.email,
   cpf: gerarCPFAleatorio(),
   codigo_municipio: pegarCodigoMunicipioAleatorio(codMunicipioIBGE),
   codigo_jornada: "1",
@@ -5929,7 +5951,7 @@ const colaborador = {
 const criarColaboradorOpcionaisPreenchidosNulo = {
   responsavel_cpf: "99999999999",
   cpfcnpj: "65978437000140",
-  nome: gerarNomeAleatorio(),
+  nome: dadosUnicos.nome,
   usuario: gerarUsuarioUnico(),
   email: gerarEmailUnico(),
   cpf: gerarCPFAleatorio(),
@@ -5955,7 +5977,7 @@ const criarColaboradorOpcionaisPreenchidosNulo = {
 const colaboradorCPFInvalido = {
   responsavel_cpf: "99999999999",
   cpfcnpj: "65978437000140",
-  nome: gerarNomeAleatorio(),
+  nome: gerarUsuarioUnico(),
   usuario: gerarUsuarioUnico(),
   email: gerarEmailUnico(),
   cpf: "123**",
@@ -5980,7 +6002,7 @@ const colaboradorCPFInvalido = {
 
 const colaboradorResponsavelCPFOmitido = {
   cpfcnpj: "65978437000140",
-  nome: gerarNomeAleatorio(),
+  nome: dadosUnicos.nome,
   usuario: gerarUsuarioUnico(),
   email: gerarEmailUnico(),
   cpf: gerarCPFAleatorio(),
@@ -6004,7 +6026,7 @@ const colaboradorResponsavelCPFOmitido = {
 };
 
 const criarColaboradorOmitindoCNPJCPF = {
-  nome: gerarNomeAleatorio(),
+  nome: dadosUnicos.nome,
   usuario: gerarUsuarioUnico(),
   email: gerarEmailUnico(),
   cpf: gerarCPFAleatorio(),
@@ -6055,7 +6077,7 @@ const criarColaboradorOmitindoNome = {
 const criarColaboradorOmitindoCPF = {
   responsavel_cpf: "99999999999",
   cpfcnpj: "65978437000140",
-  nome: gerarNomeAleatorio(),
+  nome: gerarUsuarioUnico(),
   usuario: gerarUsuarioUnico(),
   email: gerarEmailUnico(),
   codigo_municipio: pegarCodigoMunicipioAleatorio(codMunicipioIBGE),
@@ -6080,7 +6102,7 @@ const criarColaboradorOmitindoCPF = {
 const criarColaboradorOmitindoCodigoMunicipio = {
   responsavel_cpf: "99999999999",
   cpfcnpj: "65978437000140",
-  nome: gerarNomeAleatorio(),
+  nome: dadosUnicos.nome,
   usuario: gerarUsuarioUnico(),
   email: gerarEmailUnico(),
   cpf: gerarCPFAleatorio(),
@@ -6105,7 +6127,7 @@ const criarColaboradorOmitindoCodigoMunicipio = {
 const criarColaboradorOmitindoCodigoJornada = {
   responsavel_cpf: "99999999999",
   cpfcnpj: "65978437000140",
-  nome: gerarNomeAleatorio(),
+  nome: dadosUnicos.nome,
   usuario: gerarUsuarioUnico(),
   email: gerarEmailUnico(),
   cpf: gerarCPFAleatorio(),
@@ -6127,15 +6149,79 @@ const criarColaboradorOmitindoCodigoJornada = {
   web: gerarWebAleatorio(),
 };
 
-function gerarNomeAleatorio() {
-  const nomeAleatorio =
-    nomesAleatorios[Math.floor(Math.random() * nomesAleatorios.length)];
-  const dataAtual = new Date();
-  const dataFormatada = `${
-    dataAtual.toISOString().split("T")[0]
-  } ${dataAtual.toLocaleTimeString()}`;
-  return `${nomeAleatorio} ${dataFormatada}`;
-}
+const criarColaboradorOmitindoCodigoDaFuncao = {
+  responsavel_cpf: "99999999999",
+  cpfcnpj: "65978437000140",
+  nome: gerarUsuarioUnico(),
+  usuario: gerarUsuarioUnico(),
+  email: gerarEmailUnico(),
+  cpf: gerarCPFAleatorio(),
+  codigo_municipio: pegarCodigoMunicipioAleatorio(codMunicipioIBGE),
+  codigo_departamento: "TI",
+  data_admissao: dataAdmissao(),
+  celular: gerarCelularAleatorio(),
+  compensar_hora: gerarCompensarHoraAleatorio(),
+  data_nascimento: dataNascimento(),
+  informacao_adicional: gerarInformacaoAdicionalAleatoria(),
+  numero_folha: gerarNumeroFolhaAleatorio(),
+  numero_cracha: gerarNumeroFolhaAleatorio(),
+  pis: gerarPisAleatorio(),
+  rne_ctps: gerarRneCtpsAleatorio(),
+  periodo_experiencia: gerarPeriodoExperienciaAleatorio(),
+  offline: gerarOfflineAleatorio(),
+  aplicativo: gerarAplicativoAleatorio(),
+  web: gerarWebAleatorio(),
+};
+
+const criarColaboradorOmitindoCodigoDepartamento = {
+  responsavel_cpf: "99999999999",
+  cpfcnpj: "65978437000140",
+  nome: dadosUnicos.nome,
+  usuario: dadosUnicos.usuario,
+  email: dadosUnicos.email,
+  cpf: gerarCPFAleatorio(),
+  codigo_municipio: pegarCodigoMunicipioAleatorio(codMunicipioIBGE),
+  codigo_jornada: "1",
+  codigo_funcao: "QA",
+  data_admissao: dataAdmissao(),
+  celular: gerarCelularAleatorio(),
+  compensar_hora: gerarCompensarHoraAleatorio(),
+  data_nascimento: dataNascimento(),
+  informacao_adicional: gerarInformacaoAdicionalAleatoria(),
+  numero_folha: gerarNumeroFolhaAleatorio(),
+  numero_cracha: gerarNumeroFolhaAleatorio(),
+  pis: gerarPisAleatorio(),
+  rne_ctps: gerarRneCtpsAleatorio(),
+  periodo_experiencia: gerarPeriodoExperienciaAleatorio(),
+  offline: gerarOfflineAleatorio(),
+  aplicativo: gerarAplicativoAleatorio(),
+  web: gerarWebAleatorio(),
+};
+
+const criarColaboradorOmitindoDataAdmissao = {
+  responsavel_cpf: "99999999999",
+  cpfcnpj: "65978437000140",
+  nome: dadosUnicos.nome,
+  usuario: dadosUnicos.usuario,
+  email: dadosUnicos.email,
+  cpf: gerarCPFAleatorio(),
+  codigo_municipio: pegarCodigoMunicipioAleatorio(codMunicipioIBGE),
+  codigo_jornada: "1",
+  codigo_funcao: "QA",
+  codigo_departamento: "TI",
+  celular: gerarCelularAleatorio(),
+  compensar_hora: gerarCompensarHoraAleatorio(),
+  data_nascimento: dataNascimento(),
+  informacao_adicional: gerarInformacaoAdicionalAleatoria(),
+  numero_folha: gerarNumeroFolhaAleatorio(),
+  numero_cracha: gerarNumeroFolhaAleatorio(),
+  pis: gerarPisAleatorio(),
+  rne_ctps: gerarRneCtpsAleatorio(),
+  periodo_experiencia: gerarPeriodoExperienciaAleatorio(),
+  offline: gerarOfflineAleatorio(),
+  aplicativo: gerarAplicativoAleatorio(),
+  web: gerarWebAleatorio(),
+};
 
 function pegarCodigoMunicipioAleatorio(array) {
   const indiceAleatorio = Math.floor(Math.random() * array.length);
@@ -6330,4 +6416,7 @@ export {
   criarColaboradorOmitindoCPF,
   criarColaboradorOmitindoCodigoMunicipio,
   criarColaboradorOmitindoCodigoJornada,
+  criarColaboradorOmitindoCodigoDaFuncao,
+  criarColaboradorOmitindoCodigoDepartamento,
+  criarColaboradorOmitindoDataAdmissao,
 };

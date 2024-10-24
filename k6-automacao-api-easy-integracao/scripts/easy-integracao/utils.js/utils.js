@@ -14,12 +14,14 @@ export function makeRequest(method, endpoint, payload, token) {
   };
 
   switch (method.toLowerCase()) {
+    case "get":
+      return http.get(endpoint, options);
     case "post":
       return http.post(endpoint, jsonPayload, options);
     case "put":
       return http.put(endpoint, jsonPayload, options);
     default:
-    // throw new Error(Método ${method} não suportado);
+      throw new Error(`Método ${method} não suportado`); 
   }
 }
 
@@ -63,5 +65,19 @@ export function checkErrorInList(expectedError, actualErrorsList) {
       actualErrorsList,
       `A lista de erros deveria conter o erro esperado: "${expectedError}", mas não contém.`
     ).to.include(expectedError);
+  }
+}
+
+export function makeRequestSemHeader(method, endpoint, payload, token) {
+  const jsonPayload = JSON.stringify(payload);
+  const options = {};
+
+  switch (method.toLowerCase()) {
+    case "post":
+      return http.post(endpoint, jsonPayload, options);
+    case "put":
+      return http.put(endpoint, jsonPayload, options);
+    default:
+    // throw new Error(Método ${method} não suportado);
   }
 }
