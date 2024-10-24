@@ -5,7 +5,8 @@
   "scripts": {
     "exec-colaborador-post": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js",
     "exec-colaborador-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js",
-    "exec-paralelo": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js"
+    "exec-colaborador-put": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js",
+    "exec-paralelo": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js"
   },
   "author": "",
   "license": "ISC",
