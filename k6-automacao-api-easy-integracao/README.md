@@ -31,17 +31,17 @@ Pois ele sobe uma máquina com o k6, grafana e permite um melhor acompanhamento 
 ## Como Executar os Testes Local
 
 <details>
-  <summary><strong>Executar Localmente</strong></summary>
+  <summary><strong>Executar Localmente - Sem visualização Grafana</strong></summary>
 
   ### Pré-requisitos
 
-1. **K6**: Certifique-se de que o Docker está instalado na sua máquina.
+1. **K6**: Certifique-se de que o K6 está instalado na sua máquina.
    - ([Instalar K6](https://dl.k6.io/msi/k6-latest-amd64.msi)) - Importante reiniciar a máquina após a instalação.
+  
+2. **Node.js**
+    ([Instalar Node.js](https://nodejs.org/pt-br))
 
-2. **Docker Compose**: O Docker Compose deve estar instalado.
-   - [Instalar Docker Compose](https://docs.docker.com/compose/install/)
-
-  Siga os passos abaixo para rodar o projeto localmente:
+  Siga os passos abaixo para rodar executar o projeto:
 
   1. Clone o repositório:
      ```bash
@@ -50,14 +50,23 @@ Pois ele sobe uma máquina com o k6, grafana e permite um melhor acompanhamento 
 
   2. Instale as dependências necessárias (se houver).
 
-  3. Execute os testes:
+# Escolha como executar os testes
+
+Você tem duas opções para executar os testes:
+
+1. **Executar os testes individualmente**:
+   - Se você deseja testar um endpoint específico (por exemplo, o GET do endpoint do colaborador), utilize o seguinte comando:
+    - **Exemplo**: Para testar o GET do endpoint do colaborador, o comando seria:
      ```bash
-     <comando-para-executar-os-testes>
+     npm run exec-colaborador-get
      ```
 
+2. **Executar todos os cenários em paralelo**:
+   - Para executar todos os testes simultaneamente, utilize o comando abaixo. Este comando executará todos os testes que estão mapeados em `"scripts": {}` no `package.json`:
+     ```bash
+     npm run exec-paralelo
+     ```
 </details>
-
-
 
 Siga os passos abaixo para rodar o ambiente de testes de carga com Docker, k6, Grafana e InfluxDB:
 
@@ -74,8 +83,12 @@ Siga os passos abaixo para rodar o ambiente de testes de carga com Docker, k6, G
 1. **Clone o repositório**:
 
    ```bash
-   git clone <URL-do-seu-repositorio>
-   cd <nome-do-repositorio>
+   git clone <https://github.com/gabrielpicagevicz/k6-automacao-api-easy-integracao.git>
+   ```
+   
+   Na sequência, troque acesse a pasta `k6-automacao-api-easy-integracao/` 
+    ```bash
+   cd .\k6-automacao-api-easy-integracao\ 
    ```
 
 2. **Suba os serviços do InfluxDB e Grafana**:
@@ -86,26 +99,27 @@ Siga os passos abaixo para rodar o ambiente de testes de carga com Docker, k6, G
    docker-compose up -d influxdb grafana
    ```
 
-3. **Execute o teste de carga com o k6**:
-
-   Rode o script de teste utilizando o k6:
+3. **Execute os testes com o k6 grafana**:
+   - Se você deseja testar um endpoint específico (por exemplo, o POST do endpoint do colaborador), utilize o seguinte comando:
 
    ```bash
-   docker-compose run k6 run /scripts/stress-test.js
+   docker-compose run k6 run /scripts/easy-integracao/colaborador/colaborador-post.js
    ```
 
-4. **Acesse o Grafana**:
+**Executar todos os cenários em paralelo pelo docker ainda nao esta configurado**:
+   
+3. **Acesse o Grafana**:
 
    Após a execução do teste, você pode visualizar os resultados no Grafana:
 
    - URL do Grafana: [http://localhost:3000/](http://localhost:3000/)
 
-5. **Configure o InfluxDB como fonte de dados no Grafana**:
+4. **Configure o InfluxDB como fonte de dados no Grafana**:
 
    Acesse o Grafana, vá até as configurações e adicione o InfluxDB como fonte de dados:
 
-   - URL do InfluxDB: [http://localhost:8888/](http://localhost:8888/)
+   (AINDA NAO ESTA CONFIGURADO)- URL do InfluxDB: [http://localhost:8888/](http://localhost:8888/)
 
-6. **Visualize o Dashboard**:
+5. **Visualize o Dashboard**:
 
-   Importe o dashboard localizado na pasta `/dashboards` do projeto para o Grafana e comece a visualizar os resultados do teste.
+    (AINDA NAO ESTA CONFIGURADO) Importe o dashboard localizado na pasta `/dashboards` do projeto para o Grafana e comece a visualizar os resultados do teste.
