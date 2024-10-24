@@ -68,8 +68,9 @@ Você tem duas opções para executar os testes:
      ```
 </details>
 
-Siga os passos abaixo para rodar o ambiente de testes de carga com Docker, k6, Grafana e InfluxDB:
 
+<details>
+  <summary><strong>Executar com docker visualização Grafana</strong></summary>
 ### Pré-requisitos
 
 1. **Docker**: Certifique-se de que o Docker está instalado na sua máquina.
@@ -123,3 +124,5 @@ Siga os passos abaixo para rodar o ambiente de testes de carga com Docker, k6, G
 5. **Visualize o Dashboard**:
 
     (AINDA NAO ESTA CONFIGURADO) Importe o dashboard localizado na pasta `/dashboards` do projeto para o Grafana e comece a visualizar os resultados do teste.
+    
+</details>
