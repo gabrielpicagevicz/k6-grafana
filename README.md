@@ -1,5 +1,5 @@
 
-## easydots - testes automatizados 
+# EasyDots - testes automatizados 
 
 Este repositório foi criado para armazenar os testes automatizados de nossos projetos. 
 Atualmente, ele contém testes automatizados de nossa API **easy-integracao**.
@@ -20,7 +20,7 @@ Pois ele sobe uma máquina com o k6, grafana e permite um melhor acompanhamento 
         - `colaborador-post.js`: Contém testes automatizados para o endpoint POST do colaborador.
         - `colaborador-schema.js`: Contém o json-schema do retorno dos end-points para validar se as respostas estão retornando corretamente.
         - `postColaborador.js`: Contém métodos objetos para criação de colaboradores com campos variados, omitindo diferentes propriedades para testes.
-      - `utils.js/`: Fornece funções utilitárias para realizar requisições HTTP e validar respostas em testes de carga com k6, facilitando a automação de testes de API.
+   - `utils.js/`: Fornece funções utilitárias para realizar requisições HTTP e validar respostas em testes de carga com k6, facilitando a automação de testes de API.
         - `utils.js/`: Script contendo métodos e funções utilizados globalmente em todos os endpoints de forma frequente.
 - `dashboard/`: Contains Grafana configuration files and dashboards.
   - `grafana-datasource.yaml`: Configuração da fonte de dados do InfluxDB para o Grafana.
