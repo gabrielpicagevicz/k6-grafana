@@ -1,11 +1,16 @@
-
-# EasyDots - testes automatizados 
+# EasyDots - Testes Automatizados 
 
 Este repositório foi criado para armazenar os testes automatizados de nossos projetos. 
 Atualmente, ele contém testes automatizados de nossa API **easy-integracao**.
 
-Você pode executar o repositório localmente ou via Docker para visualizar as métricas dos testes executados. 
-Pois ele sobe uma máquina com o k6, grafana e permite um melhor acompanhamento dos resultados.
+Aqui também está configurado a execução da Pipeline, que irá rodar quando os desenvolvedores abrir um PR, atualmente está funcionando porém pra todo commit feito na master.
+[descrever como funciona as pipelines]
+
+Fluxo de Desenvolvimento e Onde os testes serão executados
+![alt text](Fluxograma.png)
+
+
+Você pode executar o repositório localmente ou via Docker para visualizar as métricas dos testes executados, pois ele sobe uma máquina com o k6 e Grafana, permitindo um melhor acompanhamento dos resultados.
 
 ## Estrutura do Proejeto
 
@@ -45,7 +50,7 @@ Pois ele sobe uma máquina com o k6, grafana e permite um melhor acompanhamento 
 
   1. Clone o repositório:
      ```bash
-     git clone <https://github.com/gabrielpicagevicz/k6-automacao-api-easy-integracao.git>
+     git clone https://github.com/gabrielpicagevicz/k6-automacao-api-easy-integracao.git
      ```
 
   2. Instale as dependências necessárias (se houver).
@@ -84,7 +89,7 @@ Você tem duas opções para executar os testes:
 1. **Clone o repositório**:
 
    ```bash
-   git clone <https://github.com/gabrielpicagevicz/k6-automacao-api-easy-integracao.git>
+   git clone https://github.com/gabrielpicagevicz/k6-automacao-api-easy-integracao.git
    ```
    
    Na sequência, troque acesse a pasta `k6-automacao-api-easy-integracao/` 
@@ -106,23 +111,24 @@ Você tem duas opções para executar os testes:
    ```bash
    docker-compose run k6 run /scripts/easy-integracao/colaborador/colaborador-post.js
    ```
-
-**Executar todos os cenários em paralelo pelo docker ainda nao esta configurado**:
+```bash
+   em breve será possível executar paralelamente
+   ```
    
-3. **Acesse o Grafana**:
+4. **Acesse o Grafana**:
 
    Após a execução do teste, você pode visualizar os resultados no Grafana:
 
    - URL do Grafana: [http://localhost:3000/](http://localhost:3000/)
 
-4. **Configure o InfluxDB como fonte de dados no Grafana**:
+5. **Configure o InfluxDB como fonte de dados no Grafana**:
 
    Acesse o Grafana, vá até as configurações e adicione o InfluxDB como fonte de dados:
 
-   (AINDA NAO ESTA CONFIGURADO)- URL do InfluxDB: [http://localhost:8888/](http://localhost:8888/)
+   (Em breve)- URL do InfluxDB: [http://localhost:8888/](http://localhost:8888/)
 
-5. **Visualize o Dashboard**:
+6. **Visualize o Dashboard**:
 
-    (AINDA NAO ESTA CONFIGURADO) Importe o dashboard localizado na pasta `/dashboards` do projeto para o Grafana e comece a visualizar os resultados do teste.
+    (Em breve) Importe o dashboard localizado na pasta `/dashboards` do projeto para o Grafana e comece a visualizar os resultados do teste.
     
 </details>
