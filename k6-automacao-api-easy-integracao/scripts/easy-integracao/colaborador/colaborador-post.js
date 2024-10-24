@@ -1,5 +1,3 @@
-import http from "k6/http";
-import { expect } from "https://jslib.k6.io/k6chaijs/4.3.4.3/index.js";
 import {
   colaborador,
   criarColaboradorOpcionaisPreenchidosNulo as opcoesNulas,
