@@ -31,3 +31,11 @@ jobs:
         run: |
           API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js
           API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put-demissao.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-post.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-get.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-put.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/jornada/jornada-get.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-post.js
+          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-get.js
