@@ -7,7 +7,13 @@
     "exec-colaborador-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js",
     "exec-colaborador-put": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js",
     "exec-colaborador-demissao": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put-demissao.js",
-    "exec-paralelo": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put-demissao.js"
+    "exec-departamento-post": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-post.js",
+    "exec-departamento-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-get.js",
+    "exec-departamento-put": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-put.js",
+    "exec-jornada-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/jornada/jornada-get.js",
+    "exec-funcao-post": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-post.js",
+    "exec-funcao-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-get.js",
+    "exec-paralelo": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put-demissao.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-put.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/jornada/jornada-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-get.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +22,3 @@
     "dotenv-cli": "6.0.0"
   }
 }
-
-

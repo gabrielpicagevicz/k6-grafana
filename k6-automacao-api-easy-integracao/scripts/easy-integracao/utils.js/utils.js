@@ -20,8 +20,11 @@ export function makeRequest(method, endpoint, payload, token) {
       return http.post(endpoint, jsonPayload, options);
     case "put":
       return http.put(endpoint, jsonPayload, options);
+    case "del":
+      return http.del(endpoint, null, options);
+
     default:
-      throw new Error(`Método ${method} não suportado`); 
+      throw new Error(`Método ${method} não suportado`);
   }
 }
 

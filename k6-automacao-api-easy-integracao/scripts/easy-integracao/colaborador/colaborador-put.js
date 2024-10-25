@@ -67,8 +67,6 @@ export function alterarColaborador() {
     const endpoint = `${baseUrl}/colaborador/update/`;
     const res = makeRequest("PUT", endpoint, colaboradorPUT, token);
 
-    const responseBody = JSON.parse(res.body);
-
     checkStatus(201, res.status);
 
     // Parseia o corpo da resposta

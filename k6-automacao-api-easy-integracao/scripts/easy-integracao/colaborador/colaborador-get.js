@@ -244,7 +244,7 @@ export function buscarColaboradorFiltrocodigo_municipio() {
 
 export function buscarColaboradorFiltroAttributes() {
   describe("Teste dos filtros - Busca colaborador com filtro attributes + id_colaborador", (t) => {
-    const endpoint = `${baseUrl}/colaborador?=attributes=` + id_colaborador;
+    const endpoint = `${baseUrl}/colaborador?attributes=` + "id_colaborador";
     const res = makeRequest("get", endpoint, null, token);
 
     checkStatus(200, res.status);
