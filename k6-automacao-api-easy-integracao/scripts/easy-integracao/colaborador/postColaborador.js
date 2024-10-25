@@ -5948,6 +5948,18 @@ const colaborador = {
   web: gerarWebAleatorio(),
 };
 
+const demissaoColaborador = {
+  responsavel_cpf: "99999999999",
+  id_colaborador: "0",
+  data_demissao: "2024-10-25",
+};
+
+const demissaoColaboradorFuturo = {
+  responsavel_cpf: "99999999999",
+  id_colaborador: "0",
+  data_demissao: "2099-10-25",
+};
+
 const colaboradorCriarPut = {
   responsavel_cpf: "99999999999",
   cpfcnpj: "65978437000140",
@@ -6654,4 +6666,6 @@ export {
   colaboradorPUTStatusIncorreto,
   colaboradorPUTStatusAtestado,
   colaboradorPUTInexistente,
+  demissaoColaborador,
+  demissaoColaboradorFuturo,
 };
