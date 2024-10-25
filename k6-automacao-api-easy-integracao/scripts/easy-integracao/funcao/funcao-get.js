@@ -79,7 +79,7 @@ export function buscarFuncaorFiltroLimit() {
 
     t.expect(resBodyJson.mensagem)
       .as("Validando mensagem do body")
-      .toEqual("Registros encontrados: ");
+      .toEqual("Registros encontrados:");
 
     t.expect(resBodyJson.dados.length)
       .as("Validando a quantidade de dados dentro do json retornado")
