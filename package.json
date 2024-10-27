@@ -1,24 +1,22 @@
 {
-  "name": "k6-automacao-api-easy-integracao",
+  "name": "k6-grafana-automacao-api-pokemon",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "exec-colaborador-post": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js",
-    "exec-colaborador-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js",
-    "exec-colaborador-put": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js",
-    "exec-colaborador-demissao": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put-demissao.js",
-    "exec-departamento-post": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-post.js",
-    "exec-departamento-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-get.js",
-    "exec-departamento-put": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-put.js",
-    "exec-jornada-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/jornada/jornada-get.js",
-    "exec-funcao-post": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-post.js",
-    "exec-funcao-get": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-get.js",
-    "exec-paralelo": "dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put-demissao.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-put.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/jornada/jornada-get.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-post.js & dotenv -e .env k6 run ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-get.js"
+    "exec-get-pokemons": "dotenv -e .env k6 run ./k6-grafana-automacao-api-pokemon/api-pokemon/getPokemon.js",
+    "exec-load-testing": "dotenv -e .env k6 run ./k6-grafana-automacao-api-pokemon/api-pokemon/load-testing.js",
+    "exec-stress-testing": "dotenv -e .env k6 run ./k6-grafana-automacao-api-pokemon/api-pokemon/stress-testing.js",
+    "exec-spike-testing": "dotenv -e .env k6 run ./k6-grafana-automacao-api-pokemon/api-pokemon/spike-testing.js",
+    "exec-soak-testing": "dotenv -e .env k6 run ./k6-grafana-automacao-api-pokemon/api-pokemon/soak-testing.js",
+    "exec-all-tests": "npm-run-all --parallel exec-get-pokemons exec-load-testing exec-stress-testing exec-spike-testing exec-soak-testing"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "dotenv-cli": "6.0.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

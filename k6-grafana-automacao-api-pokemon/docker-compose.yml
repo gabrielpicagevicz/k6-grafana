@@ -51,8 +51,6 @@ services:
 
   k6:
     image: grafana/k6
-#    entrypoint: /bin/sh
-#    user: root
     networks:
       - k6
     ports:
@@ -62,5 +60,4 @@ services:
     environment:
       - K6_OUT=influxdb=http://influxdb:8086/k6
     volumes:
-      - ./scripts:/scripts
-      - ./scripts:/easy-integracao/
+      - ./api-pokemon:/scripts

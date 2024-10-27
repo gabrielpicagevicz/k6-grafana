@@ -1,4 +1,4 @@
-name: Automação de Testes - api-easy-integracao
+name: Automação de Testes - Api Pokemon
 
 on:
   push:
@@ -24,21 +24,9 @@ jobs:
       - name: Set up k6
         uses: grafana/setup-k6-action@v1
 
-      - name: Display environment variables for debugging
-        run: echo "API_TOKEN=${{ secrets.API_TOKEN }}" && echo "BASE_URL=${{ secrets.BASE_URL }}"
-
       - name: Run k6 tests
         run: |
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-post.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-get.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/colaborador/colaborador-put-demissao.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-post.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-get.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/departamento/departamento-put.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/jornada/jornada-get.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-post.js || exit 1
-          API_TOKEN=${{ secrets.API_TOKEN }} BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-automacao-api-easy-integracao/scripts/easy-integracao/funcao/funcao-get.js || exit 1
+          BASE_URL=${{ secrets.BASE_URL }} k6 run --summary-export=summary.json ./k6-grafana-automacao-api-pokemon/api-pokemon/getPokemon.js || exit 1
 
       - name: Check for k6 test failures
         run: |
